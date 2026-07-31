@@ -109,3 +109,15 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.org-diagram{
+    transform-origin: top center;
+}
+
+@media (max-width:768px){
+
+    .org-diagram{
+        transform: scale(.58);
+    }
+
+}

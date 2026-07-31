@@ -483,7 +483,7 @@ function Hero() {
           </div>
 
           {/* RIGHT — stats stacked vertically, right-aligned */}
-          <div className="flex flex-row md:flex-col gap-6 md:gap-5 md:items-end md:text-right shrink-0">
+          <div className="flex flex-row flex-wrap md:flex-col gap-6 md:gap-5 md:items-end md:text-right">
             {SITE.hero.stats.map((s, i) => (
               <div key={i} className="relative pl-4 md:pl-0 md:pr-4">
                 {/* Left accent bar on mobile, right on desktop */}
@@ -647,42 +647,47 @@ function OrgStructure() {
           <GoldDivider />
         </div>
 
-        {/* Top row */}
-        <div className="flex items-center justify-center gap-2">
-          <OrgCard item={SITE.org[0]} />
-          <div className="w-10 h-px bg-[#c9a227]/40"></div>
-          <OrgCard item={SITE.org[1]} />
-          <div className="w-10 h-px bg-[#c9a227]/40"></div>
-          <OrgCard item={SITE.org[2]} />
-        </div>
-
-        {/* Connector */}
-        <div className="flex justify-center mb-8">
-          <div className="w-px h-8 bg-[#c9a227]/40" />
-        </div>
-
-        {/* Second row */}
-        <div className="flex  items-center justify-center gap-2 mb-8">
-          <OrgCard item={SITE.org[3]} />
-          <div className="w-10 h-px bg-[#c9a227]/40"></div>
-          <OrgCard item={SITE.org[4]} />
-          <div className="w-10 h-px bg-[#c9a227]/40"></div>
-          <OrgCard item={SITE.org[5]} />
-        </div>
-
-        <div className="flex justify-center mb-8">
-          <div className="flex gap-16 md:gap-32 relative">
-            <div className="w-px absolute left-1/4 top-0 h-8 bg-[#c9a227]/40" />
-            <div className="w-px absolute right-1/4 top-0 h-8 bg-[#c9a227]/40" />
+        <div className="org-diagram">
+                {/* Top row */}
+          <div className="flex items-center justify-center gap-1 md:gap-8 lg:gap-16">
+            <OrgCard item={SITE.org[0]} />
+            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
+            <OrgCard item={SITE.org[1]} />
+            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
+            <OrgCard item={SITE.org[2]} />
           </div>
+
+          {/* Connector */}
+          <div className="flex justify-center mb-8">
+            <div className="w-px h-8 bg-[#c9a227]/40" />
+          </div>
+
+          {/* Second row */}
+          <div className="flex  items-center justify-center gap-2 mb-8">
+            <OrgCard item={SITE.org[3]} />
+            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
+            <OrgCard item={SITE.org[4]} />
+            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
+            <OrgCard item={SITE.org[5]} />
+          </div>
+
+          <div className="flex justify-center mb-8">
+            <div className="flex gap-16 md:gap-32 relative">
+              <div className="w-px absolute left-1/4 top-0 h-8 bg-[#c9a227]/40" />
+              <div className="w-px absolute right-1/4 top-0 h-8 bg-[#c9a227]/40" />
+            </div>
+          </div>
+
+          {/* Third row */}
+          <div className="flex grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 justify-center gap-2 mt-4">
+            <OrgCard item={SITE.org[6]} small/>
+            <div className="w-4 md:w-20 h-px bg-[#c9a227]/40"></div>
+            <OrgCard item={SITE.org[7]} small/>
+          </div>
+
         </div>
 
-        {/* Third row */}
-        <div className="flex grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 justify-center gap-2 mt-4">
-          <OrgCard item={SITE.org[6]} small/>
-          <div className="w-20 h-px bg-[#c9a227]/40"></div>
-          <OrgCard item={SITE.org[7]} small/>
-        </div>
+        
 
         {/* Third row
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
@@ -700,22 +705,26 @@ function OrgCard({ item, accent, small }: { item: typeof SITE.org[0]; accent?: b
     <div
       className={`relative border text-center transition-all duration-200 hover:border-[#c9a227] cursor-pointer group ${
         accent
-          ? "border-[#c9a227] bg-gradient-to-b from-[#071535] to-[#0c1630] px-10 py-7 max-w-sm"
+          ? "border-[#c9a227] bg-gradient-to-b from-[#071535] to-[#0c1630] px-4 md:px-10 py-4 md:py-7 w-[140px] md:min-w-[280px]"
           : small
-          ? "border-[#c9a227]/20 bg-[#060d1f]/60 px-6 py-5"
-          : "border-[#c9a227]/40 bg-[#0c1630] px-8 py-6 max-w-xs mx-auto"
+          ? "border-[#c9a227]/20 bg-[#060d1f]/60 px-3 md:px-6 py-3 md:py-5 w-[120px] md:min-w-[220px]"
+          : "border-[#c9a227]/40 bg-[#0c1630] px-3 md:px-8 py-3 md:py-6 w-[130px] md:w-auto md:max-w-xs mx-auto"
       }`}
     >
-      <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
-      <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
+      <div className="absolute top-0 left-0 w-2 h-2 md:w-4 md:h-4 border-t border-l border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
+      <div className="absolute bottom-0 right-0 w-2 h-2 md:w-4 md:h-4 border-b border-r border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
 
-      <p className={`text-[#c9a227] text-[10px] font-semibold tracking-[0.2em] uppercase mb-1 ${accent ? "" : ""}`} style={{ fontFamily: "Cinzel, serif" }}>
+      <p className={`text-[#c9a227] text-[8px] md:text-[10px] font-semibold tracking-[0.2em] uppercase mb-1 ${accent ? "" : ""}`} style={{ fontFamily: "Cinzel, serif" }}>
         {item.level}
       </p>
-      <p className={`text-[#dce6f5] font-bold leading-snug ${accent ? "text-base" : small ? "text-xs" : "text-sm"}`} style={{ fontFamily: "Playfair Display, serif" }}>
+      <p className={`text-[#dce6f5] font-bold leading-snug ${accent
+        ? "text-sm md:text-base"
+        : small
+        ? "text-[10px] md:text-xs"
+        : "text-[11px] md:text-sm"}`} style={{ fontFamily: "Playfair Display, serif" }}>
         {item.name}
       </p>
-      <p className="text-[#dce6f5]/40 text-[10px] mt-1 tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>
+      <p className="text-[#dce6f5]/40 text-[8px] md:text-[10px] mt-1 tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>
         {item.rank}
       </p>
     </div>
@@ -1281,10 +1290,9 @@ export default function App() {
       <OrgStructure />
       <CaseFlow />
       <Maritime />
-
       <Articles />
       <CTABanner />
-<Partners />
+      <Partners />
       <Contact />
       <Footer />
     </div>
