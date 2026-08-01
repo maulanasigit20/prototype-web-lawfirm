@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import logoImg from "@/imports/logo.png";
 import aboutBackground from "@/imports/aboutBackground.png";
 import herovideoBackground from "@/imports/hero-video.mp4";
+import Reveal from "./components/Reveal";
+import { motion } from "motion/react";
 import {
   Anchor,
   Scale,
@@ -429,16 +431,28 @@ function Hero() {
 
       {/* Top-left tagline — sits just below nav */}
       <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full pt-28 md:pt-32">
-        <div className="flex items-center gap-3">
+        <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="flex items-center gap-3"
+          >
           <div className="h-px w-10 bg-[#c9a227]" />
           <p className="text-[#c9a227]/80 text-[10px] tracking-[0.35em] uppercase font-semibold" style={{ fontFamily: "Cinzel, serif" }}>
             {SITE.tagline}
           </p>
-        </div>
+        </motion.div>
         {/* Subtext right below tagline */}
-        <p className="mt-4 text-[#dce6f5]/60 text-sm leading-relaxed max-w-sm" style={{ fontFamily: "Inter, sans-serif" }}>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.7,
+            delay: 0.3,
+          }}
+          className="mt-4 text-[#dce6f5]/60 text-sm leading-relaxed max-w-sm">
           {SITE.hero.subtext}
-        </p>
+        </motion.p>
       </div>
 
       {/* Spacer — pushes bottom content down */}
@@ -450,21 +464,57 @@ function Hero() {
 
           {/* LEFT — large headline */}
           <div className="max-w-xl">
-            <h1
-              className="text-4xl md:text-6xl lg:text-[3.5rem] font-black leading-[1.0] text-[#dce6f5]"
-              style={{ fontFamily: "Playfair Display, serif" }}
-            >
+            <motion.h1
+                className="text-4xl md:text-6xl lg:text-[3.5rem] font-black leading-[1.0] text-[#dce6f5]"
+                style={{ fontFamily: "Playfair Display, serif" }}
+                initial="hidden"
+                animate="show"
+                variants={{
+                  hidden: {},
+                  show: {
+                    transition: {
+                      staggerChildren: 0.25,
+                      delayChildren: 0.6,
+                    },
+                  },
+                }}
+              >
               {SITE.hero.headline.map((line, i) => (
-                <span key={i} className="block">
+                <motion.span
+                    key={i}
+                    className="block"
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                        y: 30,
+                      },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                      },
+                    }}
+                    transition={{
+                      duration: 0.7,
+                      ease: "easeOut",
+                    }}
+                  >
                   {i === 0
                     ? <span className="text-[#c9a227]">{line}</span>
                     : line}
-                </span>
+                </motion.span>
               ))}
-            </h1>
+            </motion.h1>
 
             {/* CTA buttons below headline */}
-            <div className="flex flex-wrap gap-3 mt-7">
+            <motion.div
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.9,
+                  }}
+                  className="flex flex-wrap gap-3 mt-7"
+                >
               <button
                 onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="flex items-center gap-2 bg-[#c9a227] hover:bg-[#e0b42e] text-[#060d1f] px-6 py-3 font-bold text-xs tracking-[0.15em] uppercase transition-colors cursor-pointer"
@@ -479,15 +529,27 @@ function Hero() {
               >
                 Lihat Layanan
               </button>
-            </div>
+            </motion.div>
           </div>
 
           {/* RIGHT — stats stacked vertically, right-aligned */}
           <div className="flex flex-row flex-wrap md:flex-col gap-6 md:gap-5 md:items-end md:text-right">
             {SITE.hero.stats.map((s, i) => (
-              <div key={i} className="relative pl-4 md:pl-0 md:pr-4">
+                <motion.div
+                  key={i}
+                  initial={{
+                    opacity: 0,
+                    y: 30,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 1.2 + i * 0.2,
+                  }}>
                 {/* Left accent bar on mobile, right on desktop */}
-                <div className="absolute left-0 md:left-auto md:right-0 top-1 bottom-1 w-px bg-[#c9a227]" />
                 <p
                   className="text-4xl md:text-5xl font-black text-[#c9a227] leading-none"
                   style={{ fontFamily: "Playfair Display, serif" }}
@@ -497,7 +559,7 @@ function Hero() {
                 <p className="text-[#dce6f5]/55 text-[10px] tracking-[0.18em] uppercase mt-1 leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>
                   {s.label}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -513,6 +575,7 @@ function Hero() {
 
 function About() {
   return (
+    <Reveal delay={0.3}>
     <section id="about" className="py-20 bg-[#060d1f]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -576,6 +639,7 @@ function About() {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }
 
@@ -585,6 +649,7 @@ function Services() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
+    <Reveal delay={0.3}>
     <section id="services" className="py-20 bg-[#0c1630]" style={{ background: "linear-gradient(180deg, #0c1630 0%, #0a1840 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
@@ -632,6 +697,7 @@ function Services() {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }
 
@@ -639,6 +705,7 @@ function Services() {
 
 function OrgStructure() {
   return (
+    <Reveal delay={0.3}>
     <section id="org" className="py-20 bg-[#060d1f]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
@@ -697,6 +764,7 @@ function OrgStructure() {
         </div> */}
       </div>
     </section>
+    </Reveal>
   );
 }
 
@@ -737,6 +805,7 @@ function CaseFlow() {
   const [active, setActive] = useState(0);
 
   return (
+    <Reveal delay={0.3}>
     <section id="case-flow" className="py-20 bg-[#060d1f]" style={{ background: "linear-gradient(180deg, #0c1630 0%, #0a1840 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
@@ -806,6 +875,7 @@ function CaseFlow() {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }
 
@@ -813,6 +883,7 @@ function CaseFlow() {
 
 function Maritime() {
   return (
+    <Reveal delay={0.3}>
     <section id="gallery" className="py-20" style={{ background: "linear-gradient(180deg, #0c1630 0%, #0a1840 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
@@ -843,10 +914,11 @@ function Maritime() {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }
 
-
+// ─── Partners & Klien ─────────────────────────────────────────────────
 function Partners() {
   const logos = [
   "https://cdn.simpleicons.org/google",
@@ -861,6 +933,7 @@ function Partners() {
 ];
 
   return (
+    <Reveal delay={0.3}>
     <section
       id="partners"
       className="py-16 overflow-hidden"
@@ -913,6 +986,7 @@ function Partners() {
         </div>
       </div>
     </section>
+  </Reveal>
   );
 }
 
@@ -921,7 +995,9 @@ function Partners() {
 // ─── Articles ─────────────────────────────────────────────────────────────────
 
 function Articles() {
+  
   return (
+    <Reveal delay={0.3}>
     <section id="articles" className="py-20" style={{ background: "linear-gradient(180deg, #0c1630 0%, #0a1840 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -958,13 +1034,16 @@ function Articles() {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }
 
 // ─── CTA Banner ───────────────────────────────────────────────────────────────
 
 function CTABanner() {
+  
   return (
+    <Reveal delay={0.3}>
     <section className="py-16 bg-gradient-to-r from-[#c9a227] to-[#e0b42e] relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-64 h-64 border border-white rounded-full -translate-x-1/2 -translate-y-1/2" />
@@ -999,6 +1078,7 @@ function CTABanner() {
         </div>
       </div>
     </section>
+  </Reveal>
   );
 }
 
@@ -1016,6 +1096,7 @@ function Contact() {
   };
 
   return (
+    <Reveal delay={0.3}>
     <section id="contact" className="py-20 bg-[#060d1f]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-14">
@@ -1174,6 +1255,7 @@ function Contact() {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }
 
