@@ -28,17 +28,124 @@ import PortalLogin from "./PortalLogin";
 
 // ─── Editable site data ───────────────────────────────────────────────────────
 
+// 1. Update data TEAM_MEMBERS dengan data asli dari gambar
+const TEAM_MEMBERS = [
+  {
+    category: "Managing Partner",
+    members: [
+      { name: "Laksda TNI (Purn) Anwar Saadi S.H., M.H.", role: "Managing Partner" },
+      { name: "Laksda TNI (Purn) Kresno Buntoro, S.H., LL.M., Ph.D.", role: "Managing Partner" },
+    ],
+  },
+  {
+    category: "Office Manager",
+    members: [
+      { name: "Kolonel (Purn) Esti Chasanah. S.H.", role: "Office Manager" },
+    ],
+  },
+  {
+    category: "Senior Associate",
+    members: [
+      { name: "Laksma TNI (Purn) Leonard Marpaung S.H., M.H.", role: "Senior Associate" },
+      { name: "Laksma TNI (Purn) Dr. Sinoeng Harjanti S.H., M.H.", role: "Senior Associate" },
+    ],
+  },
+  {
+    category: "Strategic Partner",
+    members: [
+      { name: "Laksma TNI (Purn) Joko Sulistyanto S.H., M.H.", role: "Strategic Partner" },
+      { name: "(beserta 20 orang Rekan Perwira Hukum Aktif)", role: "Mitra Strategis Aktif" },
+    ],
+  },
+  {
+    category: "Divisi Litigasi",
+    members: [
+      { name: "Laksma TNI (Purn) Estu Rahardjo, S.H., M.H.", role: "Tim Litigasi" },
+      { name: "Kolonel (Purn) Komang Suciawan S.H., M.H.", role: "Tim Litigasi" },
+      { name: "Kolonel (Purn) Eko Priyanto, S.H.", role: "Tim Litigasi" },
+      { name: "Kolonel (Purn) Merpati Supiarso, S.H., M.H.", role: "Tim Litigasi" },
+    ],
+  },
+  {
+    category: "Divisi Non Litigasi",
+    members: [
+      { name: "Laksma TNI (Purn) Damayanti, S.H.", role: "Tim Non Litigasi" },
+      { name: "Kolonel (Purn) Suharsono S.H., M.H.", role: "Tim Non Litigasi" },
+      { name: "Kolonel (Purn) Ida Kade Sadnyana, S.H., M.H.", role: "Tim Non Litigasi" },
+      { name: "Kolonel (Purn) ETM Nainggolan, S.H., M.H.", role: "Tim Non Litigasi" },
+      { name: "Kolnel (Purn) Wahyu Nugraha, S.H.", role: "Tim Non Litigasi" },
+    ],
+  },
+  {
+    category: "Associate Lawyer / Tim Pelaksana Teknis",
+    members: [
+      { name: "Kolonel (Purn) Dr. Mangisi Simanjutak S.H., M.H.", role: "Associate Lawyer" },
+      { name: "Kolonel (Purn) Lasman Nahampun, S.H., M.H.", role: "Associate Lawyer" },
+    ],
+  },
+  {
+    category: "Paralegal dan Staf Administrasi",
+    members: [
+      { name: "Mayor (Purn) Edy Kuspangat, S.H.", role: "Staf Admin & Paralegal" },
+      { name: "Mayor (Purn) Najiyulloh, S.H.", role: "Staf Admin & Paralegal" },
+      { name: "Kapten (Purn) Kasmani Gatot, S.H.", role: "Staf Admin & Paralegal" },
+    ],
+  },
+];
+
+// 2. Komponen Tampilan yang disesuaikan
+function TeamListSection() {
+  return (
+    <div className="mt-20 max-w-6xl mx-auto">
+      <div className="text-center mb-10">
+        <h3 className="text-xl md:text-2xl font-bold text-[#dce6f5]" style={{ fontFamily: "Playfair Display, serif" }}>
+          Susunan Pengurus dan Pelaksana
+        </h3>
+        <p className="text-[#dce6f5]/60 text-xs md:text-sm mt-1">
+          Kantor Hukum Jalasena Bhiksa
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {TEAM_MEMBERS.map((group, idx) => (
+          /* Bungkus setiap kartu dengan Reveal dan berikan delay bertingkat */
+          <Reveal key={idx} delay={0.1 * idx}>
+            <div className="border border-[#c9a227]/30 bg-[#0c1630]/80 p-6 rounded-lg h-full">
+              <h4
+                className="text-[#c9a227] font-semibold text-sm uppercase tracking-wider mb-4 border-b border-[#c9a227]/20 pb-2"
+                style={{ fontFamily: "Cinzel, serif" }}
+              >
+                {group.category}
+              </h4>
+              <div className="space-y-3">
+                {group.members.map((person, pIdx) => (
+                  <div key={pIdx} className="flex flex-col text-xs md:text-sm border-b border-white/5 pb-2 last:border-0">
+                    <span className={`font-semibold ${person.name.startsWith("(") ? "text-[#c9a227]/80 italic" : "text-[#dce6f5]"}`}>
+                      {person.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
 const SITE = {
   name: "KANTOR HUKUM PPAL",
-  subtitle: "JALA BIKSA PURNAWIRA",
-  tagline: "JALA BIKSA PURNAWIRA",
+  subtitle: "JALASENA BHIKSA",
+  tagline: "JALASENA BHIKSA",
   hero: {
     headline: ["INTEGRITAS.", "KEHORMATAN.", "PROFESIONALISME."],
     subtext:
-      "Memberikan layanan hukum terpercaya di bidang militer, maritim, dan niaga dengan standar profesionalisme tertinggi.",
+      "Memberikan layanan hukum terpercaya di bidang maritim dan niaga dengan standar profesionalisme tertinggi.",
     stats: [
-      { value: "35+", label: "Tahun Pengalaman" },
-      { value: "250+", label: "Perkara Ditangani" },
+      { value: "5+", label: "Bidang Layanan" },
+      { value: "360°", label: "Pendekatan Hukum" },
       { value: "100%", label: "Komitmen Klien" },
     ],
   },
@@ -52,9 +159,9 @@ const SITE = {
     { label: "Kontak", href: "#contact" },
   ],
   contact: {
-    phone: "+62 21 1234 5678",
-    email: "info@kantorppal.go.id",
-    address: "Jl. Gunung Sahari No. 78, Jakarta Utara",
+    phone: "0812-8999-9553 ",
+    email: "sekretariat.lbnh@gmail.com",
+    address: "Jalan Tabah Raya Nomor 1  Kompleks TNI AL Kelapa Gading Barat – Jakarta Utara 14401",
   },
   services: [
     {
@@ -79,57 +186,65 @@ const SITE = {
     },
     {
       icon: "shield",
-      title: "Litigasi",
-      desc: "Mewakili klien dalam proses penyelesaian sengketa melalui pengadilan maupun arbitrase, baik perkara pidana, perdata, niaga, maupun korporasi.",
-    },
-    {
-      icon: "users",
-      title: "Non Litigasi",
-      desc: "Pendampingan hukum preventif melalui konsultasi, penyusunan dokumen hukum, negosiasi, legal review, dan mitigasi risiko sebelum sengketa terjadi.",
+      title: "Arbitrase",
+      desc: "Pendampingan penyelesaian sengketa melalui arbitrase, mulai dari penyusunan strategi dan proses persidangan arbitrase hingga pelaksanaan putusan.",
     },
   ],
-  org: [
-    {
-      level: "PPAL",
-      name: "Jala Biksa Purnawira",
-      rank: "-",
-    },
-    {
+
+  org: {
+    managingPartner: {
       level: "Managing Partner",
-      name: "Purnawirawan TNI",
-      rank: "Pimpinan dan Pelaksana",
+      name: "Purnawirawan TNI AL",
+      rank: "Pimpinan dan Pelaksana Utama",
     },
-    {
-      level: "Kabinkum dan HAM TNI",
-      name: "Kadiskum TNI AL",
-      rank: "-",
-    },
-    {
-      level: "Office Manager",
-      name: "Mayor TNI Sari Dewi, S.H., M.H.",
-      rank: "Kepala Bagian",
-    },
-    {
-      level: "Senior Associate",
-      name: "Kapten TNI Reza Fauzi",
-      rank: "Kepala Bagian",
-    },
-    {
-      level: "Strategic Partner",
-      name: "Letda TNI Putri Rahayu, S.H.",
-      rank: "Kepala Bagian",
-    },
-        {
-      level: "Kepala Divisi Litigasi",
-      name: "Kapten TNI Reza Fauzi",
-      rank: "Kepala Bagian",
-    },
-    {
-      level: "Kepala Divisi Non-Litigasi",
-      name: "Letda TNI Putri Rahayu, S.H.",
-      rank: "Kepala Bagian",
-    },
-  ],
+    row2: [
+      {
+        level: "Office Manager",
+        name: "-",
+        rank: "",
+        sub: [{ name: "Finance" }, { name: "HRD" }, { name: "Tata Usaha" }],
+      },
+      {
+        level: "Senior Associate",
+        name: "-",
+        rank: "",
+      },
+      {
+        level: "Strategic Partner",
+        name: "Perwira TNI AL Aktif dan Klien",
+        rank: "",
+      },
+    ],
+    divisions: [
+      {
+        level: "Kepala Divisi Litigasi",
+        name: "Sengketa dan Pengadilan",
+        groups: ["Kelompok Pidana", "Kelompok Perdata", "Kelompok Niaga"],
+      },
+      {
+        level: "Kepala Divisi Non-Litigasi",
+        name: "-",
+        groups: [
+          "Kelompok Korporasi",
+          "Kelompok Asuransi",
+          "Kelompok AHU (Administrasi Hukum Umum)",
+        ],
+      },
+    ],
+
+    
+    bottom: [
+      {
+        level: "ASSOCIATE LAWYER",
+        name: "Tim Advokat Pelaksana / Tim Teknis",
+      },
+      {
+        level: "PARALEGAL & STAF ADMIN",
+        name: "(e-court & berkas)",
+      },
+    ],
+  },
+
   caseFlow: [
     {
       step: "01",
@@ -191,7 +306,7 @@ const SITE = {
   ],
   about: {
     title: "Integritas, Pengalaman, dan Strategi dalam Setiap Pendampingan Hukum.",
-    body: "Kantor Hukum PPAL \"Jala Biksa Purnawira\" didirikan dengan visi menghadirkan layanan hukum yang profesional, berintegritas, dan berorientasi pada solusi. Berlandaskan pengalaman kepemimpinan para Purnawirawan TNI Angkatan Laut serta didukung oleh advokat dan praktisi hukum yang kompeten, kami menggabungkan disiplin, strategi, dan keahlian hukum untuk memberikan pendampingan yang tepat bagi individu maupun korporasi. Kami memiliki fokus pada bidang Hukum Maritim, Hukum Korporasi, Hukum Niaga, Asuransi, serta layanan Litigasi dan Non-Litigasi guna memberikan solusi hukum yang komprehensif sesuai kebutuhan setiap klien.",
+    body: "Kantor Hukum PPAL \"Jalasena Bhiksa\" didirikan dengan visi menghadirkan layanan hukum yang profesional, berintegritas, dan berorientasi pada solusi. Berlandaskan pengalaman kepemimpinan para Purnawirawan TNI Angkatan Laut serta didukung oleh advokat dan praktisi hukum yang kompeten, kami menggabungkan disiplin, strategi, dan keahlian hukum untuk memberikan pendampingan yang tepat bagi individu maupun korporasi. Kami memiliki fokus pada bidang Hukum Maritim, Hukum Korporasi, Hukum Niaga, Asuransi, serta layanan Litigasi dan Non-Litigasi guna memberikan solusi hukum yang komprehensif sesuai kebutuhan setiap klien.",
     img: "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?w=600&h=700&fit=crop&auto=format",
     imgAlt: "Perwira hukum TNI AL dalam seragam resmi",
   },
@@ -437,10 +552,11 @@ function Hero() {
             transition={{ duration: 0.7 }}
             className="flex items-center gap-3"
           >
-          <div className="h-px w-10 bg-[#c9a227]" />
+          <div className="h-px w-5 bg-[#c9a227]" />
           <p className="text-[#c9a227]/80 text-[10px] tracking-[0.35em] uppercase font-semibold" style={{ fontFamily: "Cinzel, serif" }}>
             {SITE.tagline}
           </p>
+          <div className="h-px w-5 bg-[#c9a227]" />
         </motion.div>
         {/* Subtext right below tagline */}
         <motion.p
@@ -597,8 +713,8 @@ function About() {
 
             {/* Floating stat badge */}
             <div className="absolute bottom-8 -right-4 md:-right-10 bg-[#c9a227] px-6 py-4 text-[#060d1f]">
-              <p className="text-3xl font-black" style={{ fontFamily: "Playfair Display, serif" }}>35+</p>
-              <p className="text-xs font-bold tracking-wider uppercase" style={{ fontFamily: "Inter, sans-serif" }}>Tahun<br />Pengalaman</p>
+              <p className="text-3xl font-black" style={{ fontFamily: "Playfair Display, serif" }}>360°</p>
+              <p className="text-xs font-bold tracking-wider uppercase" style={{ fontFamily: "Inter, sans-serif" }}>Pendekatan<br />Hukum</p>
             </div>
           </div>
 
@@ -627,7 +743,7 @@ function About() {
             </div>
             <div className="grid grid-cols-1 gap-4 mt-8">
               {[
-                { icon: <CheckCircle className="w-5 h-5" />, text: "Fokus: • Maritim • Korporasi • Niaga • Asuransi" },
+                { icon: <CheckCircle className="w-5 h-5" />, text: "Fokus: • Maritim • Korporasi • Niaga • Asuransi • Arbitrase" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-[#dce6f5]/70 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>
                   <span className="text-[#c9a227]">{item.icon}</span>
@@ -656,45 +772,78 @@ function Services() {
           <SectionLabel>Layanan Kami</SectionLabel>
           <SectionHeading>Layanan Hukum Terspesialisasi</SectionHeading>
           <GoldDivider />
-          <p className="text-[#dce6f5]/60 max-w-xl mx-auto text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-            Kami menyediakan layanan hukum komprehensif dengan keahlian mendalam di bidang maritim, korporasi, niaga dan lainnya.
+          <p className="text-[#dce6f5]/60 max-w-7xl mx-auto text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+            Jalasena Bhiksa memberikan layanan hukum melalui pendekatan litigasi dan non-litigasi, dengan strategi yang disesuaikan dengan karakteristik dan kepentingan setiap klien. Kami berkomitmen menghadirkan solusi hukum yang tepat, profesional, dan berorientasi pada kepentingan klien.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SITE.services.map((svc, i) => (
-            <div
-              key={i}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              className={`relative p-8 border cursor-pointer transition-all duration-300 group ${
+        <SectionLabel>Bidang Layanan</SectionLabel>
+        <br className="mb-6" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+        {SITE.services.map((svc, i) => (
+          <div
+            key={i}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            className={`relative p-8 border cursor-pointer transition-all duration-300 group
+              lg:col-span-2
+              ${i === 3 ? "lg:col-start-2" : ""}
+              ${i === 4 ? "lg:col-start-4" : ""}
+              ${
                 hovered === i
                   ? "border-[#c9a227] bg-[#0c1630]"
                   : "border-[#c9a227]/15 bg-[#0c1630]/50 hover:border-[#c9a227]/50"
               }`}
-            >
-              {/* Corner ornament */}
-              <div className={`absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 transition-colors duration-300 ${hovered === i ? "border-[#c9a227]" : "border-[#c9a227]/30"}`} />
-              <div className={`absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 transition-colors duration-300 ${hovered === i ? "border-[#c9a227]" : "border-[#c9a227]/30"}`} />
+          >
+            {/* Corner ornament */}
+            <div
+              className={`absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 transition-colors duration-300 ${
+                hovered === i
+                  ? "border-[#c9a227]"
+                  : "border-[#c9a227]/30"
+              }`}
+            />
 
-              <div className={`mb-5 text-[#c9a227] transition-transform duration-300 ${hovered === i ? "scale-110" : ""}`}>
-                <ServiceIcon name={svc.icon} className="w-9 h-9" />
-              </div>
-              <h3
-                className="text-lg font-bold text-[#dce6f5] mb-3"
-                style={{ fontFamily: "Playfair Display, serif" }}
-              >
-                {svc.title}
-              </h3>
-              <p className="text-[#dce6f5]/55 text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                {svc.desc}
-              </p>
-              <div className={`mt-5 flex items-center gap-2 text-[#c9a227] text-xs font-semibold tracking-wider uppercase transition-opacity duration-300 ${hovered === i ? "opacity-100" : "opacity-0"}`}>
-                Selengkapnya <ChevronRight className="w-3.5 h-3.5" />
-              </div>
+            <div
+              className={`absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 transition-colors duration-300 ${
+                hovered === i
+                  ? "border-[#c9a227]"
+                  : "border-[#c9a227]/30"
+              }`}
+            />
+
+            <div
+              className={`mb-5 text-[#c9a227] transition-transform duration-300 ${
+                hovered === i ? "scale-110" : ""
+              }`}
+            >
+              <ServiceIcon name={svc.icon} className="w-9 h-9" />
             </div>
-          ))}
-        </div>
+
+            <h3
+              className="text-lg font-bold text-[#dce6f5] mb-3"
+              style={{ fontFamily: "Playfair Display, serif" }}
+            >
+              {svc.title}
+            </h3>
+
+            <p
+              className="text-[#dce6f5]/55 text-sm leading-relaxed"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              {svc.desc}
+            </p>
+
+            <div
+              className={`mt-5 flex items-center gap-2 text-[#c9a227] text-xs font-semibold tracking-wider uppercase transition-opacity duration-300 ${
+                hovered === i ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              Selengkapnya
+              <ChevronRight className="w-3.5 h-3.5" />
+            </div>
+          </div>
+        ))}
+      </div>
       </div>
     </section>
     </Reveal>
@@ -706,95 +855,152 @@ function Services() {
 function OrgStructure() {
   return (
     <Reveal delay={0.3}>
-    <section id="org" className="py-20 bg-[#060d1f]">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-14">
-          <SectionLabel>Kepemimpinan</SectionLabel>
-          <SectionHeading>Struktur Organisasi</SectionHeading>
-          <GoldDivider />
-        </div>
-
-        <div className="org-diagram">
-                {/* Top row */}
-          <div className="flex items-center justify-center gap-1 md:gap-8 lg:gap-16">
-            <OrgCard item={SITE.org[0]} />
-            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
-            <OrgCard item={SITE.org[1]} />
-            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
-            <OrgCard item={SITE.org[2]} />
+      <section id="org" className="py-20 bg-[#060d1f]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-14">
+            <SectionLabel>Kepemimpinan</SectionLabel>
+            <SectionHeading>Struktur Organisasi</SectionHeading>
+            <GoldDivider />
           </div>
 
-          {/* Connector */}
-          <div className="flex justify-center mb-8">
+          <div className="org-diagram flex flex-col items-center max-w-5xl mx-auto overflow-x-auto pb-6">
+            {/* Level 1: Managing Partner */}
+            <OrgCard item={SITE.org.managingPartner} accent />
+
+            {/* Line down to Row 2 */}
             <div className="w-px h-8 bg-[#c9a227]/40" />
-          </div>
 
-          {/* Second row */}
-          <div className="flex  items-center justify-center gap-2 mb-8">
-            <OrgCard item={SITE.org[3]} />
-            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
-            <OrgCard item={SITE.org[4]} />
-            <div className="w-4 md:w-8 lg:w-20 h-px bg-[#c9a227]/40"></div>
-            <OrgCard item={SITE.org[5]} />
-          </div>
+            {/* Level 2: Office Manager, Senior Associate, Strategic Partner */}
+            <div className="relative flex justify-center gap-4 md:gap-12 w-full border-t border-[#c9a227]/40 pt-8">
+              {SITE.org.row2.map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center flex-1 max-w-[240px]">
+                  <OrgCard item={item} />
+                  
+                  {/* Sub-items for Office Manager */}
+                  {item.sub && (
+                    <div className="flex flex-col items-center w-full mt-4">
+                      <div className="w-px h-6 bg-[#c9a227]/40" />
+                      <div className="grid grid-cols-3 gap-2 w-full border-t border-[#c9a227]/40 pt-4">
+                        {item.sub.map((subItem, sIdx) => (
+                          <div
+                            key={sIdx}
+                            className="border border-[#c9a227]/20 bg-[#060d1f]/60 p-2 text-center text-[10px] md:text-xs text-[#dce6f5]"
+                          >
+                            {subItem.name}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
 
-          <div className="flex justify-center mb-8">
-            <div className="flex gap-16 md:gap-32 relative">
-              <div className="w-px absolute left-1/4 top-0 h-8 bg-[#c9a227]/40" />
-              <div className="w-px absolute right-1/4 top-0 h-8 bg-[#c9a227]/40" />
+            {/* Line down from Senior Associate to Divisions */}
+            <div className="w-px h-10 bg-[#c9a227]/40" />
+
+            {/* Level 3: Divisions */}
+            <div className="relative flex justify-center gap-8 md:gap-20 w-full border-t border-[#c9a227]/40 pt-8">
+              {SITE.org.divisions.map((div, idx) => (
+                <div key={idx} className="flex flex-col items-center flex-1 max-w-[360px]">
+                  <OrgCard item={div} />
+                  
+                  {/* Groups under division */}
+                  <div className="w-px h-6 bg-[#c9a227]/40" />
+                  <div className="grid grid-cols-3 gap-2 w-full border-t border-[#c9a227]/40 pt-4">
+                    {div.groups.map((grp, gIdx) => (
+                      <div
+                        key={gIdx}
+                        className="flex flex-col items-center border border-[#c9a227]/20 bg-[#060d1f]/60 p-2 text-center text-[9px] md:text-xs text-[#dce6f5]"
+                      >
+                        {grp}
+                        <div className="w-px h-4 bg-[#c9a227]/40 mt-2 -mb-2" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Line down to Associate Lawyer */}
+            <div className="w-full max-w-[650px] border-t border-[#c9a227]/40 pt-6 mt-2">
+              <div className="w-px h-4 bg-[#c9a227]/40 mx-auto -mt-6" />
+              {/* Level 4: Associate Lawyer */}
+              <div className="border border-[#c9a227] bg-gradient-to-b from-[#071535] to-[#0c1630] p-4 text-center rounded-lg w-full">
+                <p className="text-[#c9a227] font-bold text-sm md:text-base tracking-wider uppercase">
+                  {SITE.org.bottom[0].level}
+                </p>
+                <p className="text-[#dce6f5] text-xs md:text-sm mt-1">
+                  {SITE.org.bottom[0].name}
+                </p>
+              </div>
+            </div>
+
+            {/* Line down to Paralegal */}
+            <div className="w-px h-8 bg-[#c9a227]/40" />
+
+            {/* Level 5: Paralegal & Staf Admin */}
+            <div className="border border-[#c9a227]/40 bg-[#0c1630] p-4 text-center w-full max-w-[450px]">
+              <p className="text-[#dce6f5] font-bold text-xs md:text-sm uppercase">
+                {SITE.org.bottom[1].level}
+              </p>
+              <p className="text-[#dce6f5]/60 text-[10px] md:text-xs mt-1">
+                {SITE.org.bottom[1].name}
+              </p>
             </div>
           </div>
-
-          {/* Third row */}
-          <div className="flex grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 justify-center gap-2 mt-4">
-            <OrgCard item={SITE.org[6]} small/>
-            <div className="w-4 md:w-20 h-px bg-[#c9a227]/40"></div>
-            <OrgCard item={SITE.org[7]} small/>
-          </div>
-
+          <TeamListSection />
         </div>
-
-        
-
-        {/* Third row
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
-          {SITE.org.slice(1).map((item, i) => (
-            <OrgCard key={i} item={item} small />
-          ))}
-        </div> */}
-      </div>
-    </section>
+      </section>
     </Reveal>
   );
 }
 
-function OrgCard({ item, accent, small }: { item: typeof SITE.org[0]; accent?: boolean; small?: boolean }) {
+
+function OrgCard({
+  item,
+  accent,
+  small,
+}: {
+  item: { level: string; name?: string; rank?: string };
+  accent?: boolean;
+  small?: boolean;
+}) {
   return (
     <div
-      className={`relative border text-center transition-all duration-200 hover:border-[#c9a227] cursor-pointer group ${
+      className={`relative border text-center transition-all duration-200 hover:border-[#c9a227] cursor-pointer group w-full ${
         accent
-          ? "border-[#c9a227] bg-gradient-to-b from-[#071535] to-[#0c1630] px-4 md:px-10 py-4 md:py-7 w-[140px] md:min-w-[280px]"
+          ? "border-[#c9a227] bg-gradient-to-b from-[#071535] to-[#0c1630] px-4 md:px-8 py-4 md:py-6 max-w-xs"
           : small
-          ? "border-[#c9a227]/20 bg-[#060d1f]/60 px-3 md:px-6 py-3 md:py-5 w-[120px] md:min-w-[220px]"
-          : "border-[#c9a227]/40 bg-[#0c1630] px-3 md:px-8 py-3 md:py-6 w-[130px] md:w-auto md:max-w-xs mx-auto"
+          ? "border-[#c9a227]/20 bg-[#060d1f]/60 px-2 md:px-4 py-2 md:py-4"
+          : "border-[#c9a227]/40 bg-[#0c1630] px-3 md:px-6 py-3 md:py-5"
       }`}
     >
-      <div className="absolute top-0 left-0 w-2 h-2 md:w-4 md:h-4 border-t border-l border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
-      <div className="absolute bottom-0 right-0 w-2 h-2 md:w-4 md:h-4 border-b border-r border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
+      <div className="absolute top-0 left-0 w-2 h-2 md:w-3 md:h-3 border-t border-l border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
+      <div className="absolute bottom-0 right-0 w-2 h-2 md:w-3 md:h-3 border-b border-r border-[#c9a227]/40 group-hover:border-[#c9a227] transition-colors" />
 
-      <p className={`text-[#c9a227] text-[8px] md:text-[10px] font-semibold tracking-[0.2em] uppercase mb-1 ${accent ? "" : ""}`} style={{ fontFamily: "Cinzel, serif" }}>
+      <p
+        className="text-[#c9a227] text-[9px] md:text-[11px] font-semibold tracking-[0.15em] uppercase mb-1"
+        style={{ fontFamily: "Cinzel, serif" }}
+      >
         {item.level}
       </p>
-      <p className={`text-[#dce6f5] font-bold leading-snug ${accent
-        ? "text-sm md:text-base"
-        : small
-        ? "text-[10px] md:text-xs"
-        : "text-[11px] md:text-sm"}`} style={{ fontFamily: "Playfair Display, serif" }}>
-        {item.name}
-      </p>
-      <p className="text-[#dce6f5]/40 text-[8px] md:text-[10px] mt-1 tracking-wider" style={{ fontFamily: "Inter, sans-serif" }}>
-        {item.rank}
-      </p>
+      {item.name && item.name !== "-" && (
+        <p
+          className="text-[#dce6f5] font-bold leading-snug text-[11px] md:text-sm"
+          style={{ fontFamily: "Playfair Display, serif" }}
+        >
+          {item.name}
+        </p>
+      )}
+      {item.rank && (
+        <p
+          className="text-[#dce6f5]/50 text-[8px] md:text-[10px] mt-1 tracking-wider"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
+          {item.rank}
+        </p>
+      )}
     </div>
   );
 }
@@ -1112,7 +1318,7 @@ function Contact() {
             <div className="mb-2">
               <div className="overflow-hidden border border-[#c9a227]/20 h-60">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.844069347339!2d106.83297627594303!3d-6.151632293835444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5ebefff8235%3A0xd38613a2cd8c0862!2sJl.%20Gn.%20Sahari%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1785404646506!5m2!1sid!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9166.122965308332!2d106.8862314895067!3d-6.156553870911029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f53efe8ba3b5%3A0xb690148ea0d91224!2sKompleks%20TNI%20-%20AL%2C%20Jl.%20Pulau%20Putri%20Jl.%20Kodamar%20No.1%2C%20RT.2%2FRW.9%2C%20Klp.%20Gading%20Bar.%2C%20Kec.%20Klp.%20Gading%2C%20Jkt%20Utara%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2014240!5e0!3m2!1sid!2sid!4v1787712708497!5m2!1sid!2sid"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -1168,20 +1374,6 @@ function Contact() {
                 </div>
               ))}
             </div>
-
-            {/* Logo block */}
-            {/* <div className="border border-[#c9a227]/20 p-6 flex items-center gap-4">
-              <ImageWithFallback
-                src={logoImg}
-                alt="Logo Kantor Hukum PPAL Lantamal"
-                className="w-16 h-16 object-contain"
-              />
-              <div>
-                <p className="text-[#c9a227] font-bold text-sm" style={{ fontFamily: "Cinzel, serif" }}>{SITE.name}</p>
-                <p className="text-[#dce6f5]/50 text-xs" style={{ fontFamily: "Cinzel, serif" }}>{SITE.subtitle}</p>
-                <p className="text-[#dce6f5]/40 text-[10px] mt-1" style={{ fontFamily: "Inter, sans-serif" }}>{SITE.tagline}</p>
-              </div>
-            </div> */}
           </div>
 
           {/* Form */}
@@ -1280,7 +1472,7 @@ function Footer() {
               </div>
             </div>
             <p className="text-[#dce6f5]/45 text-xs leading-relaxed max-w-xs" style={{ fontFamily: "Inter, sans-serif" }}>
-              Memberikan layanan hukum terpercaya bagi prajurit TNI AL dan masyarakat dengan komitmen penuh pada keadilan.
+              Memberikan layanan hukum terpercaya di bidang maritim dan niaga dengan standar profesionalisme tertinggi.
             </p>
           </div>
 
