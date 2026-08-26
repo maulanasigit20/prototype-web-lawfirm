@@ -4,6 +4,7 @@ import aboutBackground from "@/imports/aboutBackground.png";
 import herovideoBackground from "@/imports/hero-video.mp4";
 import Reveal from "./components/Reveal";
 import { motion } from "motion/react";
+import WhatsAppButton from "./components/WhatsAppButton";
 import {
   Anchor,
   Scale,
@@ -63,7 +64,7 @@ const TEAM_MEMBERS = [
       { name: "Laksma TNI (Purn) Estu Rahardjo, S.H., M.H.", role: "Tim Litigasi" },
       { name: "Kolonel (Purn) Komang Suciawan S.H., M.H.", role: "Tim Litigasi" },
       { name: "Kolonel (Purn) Eko Priyanto, S.H.", role: "Tim Litigasi" },
-      { name: "Kolonel (Purn) Merpati Supiarso, S.H., M.H.", role: "Tim Litigasi" },
+      { name: "Kolonel (Purn) Merpati Supiarso, S.H., M.M., CFrA.", role: "Tim Litigasi" },
     ],
   },
   {
@@ -81,6 +82,7 @@ const TEAM_MEMBERS = [
     members: [
       { name: "Kolonel (Purn) Dr. Mangisi Simanjutak S.H., M.H.", role: "Associate Lawyer" },
       { name: "Kolonel (Purn) Lasman Nahampun, S.H., M.H.", role: "Associate Lawyer" },
+      { name: "Kolonel (Purn) Abdul Gani, S.H., M.H.", role: "Associate Lawyer" },
     ],
   },
   {
@@ -133,6 +135,9 @@ function TeamListSection() {
     </div>
   );
 }
+
+
+
 
 
 const SITE = {
@@ -1563,6 +1568,8 @@ export default function App() {
     );
   }
 
+  
+
   return (
     <div className="min-h-screen" style={{ background: "#060d1f", scrollBehavior: "smooth" }}>
       <Navbar activeSection={activeSection} setPage={setPage} />
@@ -1577,6 +1584,11 @@ export default function App() {
       <Partners />
       <Contact />
       <Footer />
+      {/* Floating WhatsApp Button */}
+      <WhatsAppButton 
+        phoneNumber="6281234567890" 
+        message="Halo Kantor Hukum Jalasena Bhiksa, saya ingin mendiskusikan penanganan perkara." 
+      />
     </div>
   );
 }
