@@ -8,7 +8,7 @@ interface WhatsAppButtonProps {
 
 export default function WhatsAppButton({
   phoneNumber = "6281342267377",
-  message = "Halo, saya ingin berkonsultasi mengenai layanan hukum di Jalasena Bhiksa.",
+  message = "Halo, saya ingin berkonsultasi mengenai layanan hukum di Jalasena Bhiksa & Partners.",
 }: WhatsAppButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

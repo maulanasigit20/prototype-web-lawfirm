@@ -104,7 +104,7 @@ function TeamListSection() {
           Susunan Pengurus dan Pelaksana
         </h3>
         <p className="text-[#dce6f5]/60 text-xs md:text-sm mt-1">
-          Kantor Hukum Jalasena Bhiksa & Partner
+          Kantor Hukum Jalasena Bhiksa & Partners
         </p>
       </div>
 
@@ -142,8 +142,8 @@ function TeamListSection() {
 
 const SITE = {
   name: "KANTOR HUKUM PPAL",
-  subtitle: "JALASENA BHIKSA & PARTNER",
-  tagline: "JALASENA BHIKSA & PARTNER",
+  subtitle: "JALASENA BHIKSA & PARTNERS",
+  tagline: "JALASENA BHIKSA & PARTNERS",
   hero: {
     headline: ["INTEGRITAS.", "KEHORMATAN.", "PROFESIONALISME."],
     subtext:
@@ -311,7 +311,7 @@ const SITE = {
   ],
   about: {
     title: "Integritas, Pengalaman, dan Strategi dalam Setiap Pendampingan Hukum.",
-    body: "Kantor Hukum PPAL \"Jalasena Bhiksa & Partner\" didirikan dengan visi menghadirkan layanan hukum yang profesional, berintegritas, dan berorientasi pada solusi. Berlandaskan pengalaman kepemimpinan para Purnawirawan TNI Angkatan Laut serta didukung oleh advokat dan praktisi hukum yang kompeten, kami menggabungkan disiplin, strategi, dan keahlian hukum untuk memberikan pendampingan yang tepat bagi individu maupun korporasi. Kami memiliki fokus pada bidang Hukum Maritim, Hukum Korporasi, Hukum Niaga, Asuransi, serta layanan Litigasi dan Non-Litigasi guna memberikan solusi hukum yang komprehensif sesuai kebutuhan setiap klien.",
+    body: "Kantor Hukum PPAL \"Jalasena Bhiksa & Partners\" didirikan dengan visi menghadirkan layanan hukum yang profesional, berintegritas, dan berorientasi pada solusi. Berlandaskan pengalaman kepemimpinan para Purnawirawan TNI Angkatan Laut serta didukung oleh advokat dan praktisi hukum yang kompeten, kami menggabungkan disiplin, strategi, dan keahlian hukum untuk memberikan pendampingan yang tepat bagi individu maupun korporasi. Kami memiliki fokus pada bidang Hukum Maritim, Hukum Korporasi, Hukum Niaga, Asuransi, serta layanan Litigasi dan Non-Litigasi guna memberikan solusi hukum yang komprehensif sesuai kebutuhan setiap klien.",
     img: "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?w=600&h=700&fit=crop&auto=format",
     imgAlt: "Perwira hukum TNI AL dalam seragam resmi",
   },
@@ -780,7 +780,7 @@ function Services() {
             <SectionHeading>Layanan Hukum Terspesialisasi</SectionHeading>
             <GoldDivider />
             <p className="text-[#dce6f5]/60 max-w-7xl mx-auto text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-              Jalasena Bhiksa & Partnermemberikan layanan hukum melalui pendekatan litigasi dan non-litigasi, dengan strategi yang disesuaikan dengan karakteristik dan kepentingan setiap klien. Kami berkomitmen menghadirkan solusi hukum yang tepat, profesional, dan berorientasi pada kepentingan klien.
+              Jalasena Bhiksa & Partners memberikan layanan hukum melalui pendekatan litigasi dan non-litigasi, dengan strategi yang disesuaikan dengan karakteristik dan kepentingan setiap klien. Kami berkomitmen menghadirkan solusi hukum yang tepat, profesional, dan berorientasi pada kepentingan klien.
             </p>
           </div>
         </Reveal>
@@ -1587,7 +1587,7 @@ export default function App() {
       {/* Floating WhatsApp Button */}
       <WhatsAppButton 
         phoneNumber="6281342267377" 
-        message="Halo Kantor Hukum Jalasena Bhiksa & Partner, saya ingin mendiskusikan penanganan perkara." 
+        message="Halo Kantor Hukum Jalasena Bhiksa & Partners, saya ingin mendiskusikan penanganan perkara." 
       />
     </div>
   );
