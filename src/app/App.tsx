@@ -698,7 +698,7 @@ function About() {
           {/* Image */}
           <div className="relative">
             <div className="relative">
-              <div className="bg-[#0c1630] aspect-[3/4] max-w-md overflow-hidden">
+              <div className="bg-[#0c1630] aspect-[4/4] max-w-md overflow-hidden">
                 <img
                   src={aboutBackground}
                   alt={SITE.about.imgAlt}
@@ -765,88 +765,96 @@ function Services() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <Reveal delay={0.3}>
     <section id="services" className="py-20 bg-[#0c1630]" style={{ background: "linear-gradient(180deg, #0c1630 0%, #0a1840 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-14">
-          <SectionLabel>Layanan Kami</SectionLabel>
-          <SectionHeading>Layanan Hukum Terspesialisasi</SectionHeading>
-          <GoldDivider />
-          <p className="text-[#dce6f5]/60 max-w-7xl mx-auto text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-            Jalasena Bhiksa memberikan layanan hukum melalui pendekatan litigasi dan non-litigasi, dengan strategi yang disesuaikan dengan karakteristik dan kepentingan setiap klien. Kami berkomitmen menghadirkan solusi hukum yang tepat, profesional, dan berorientasi pada kepentingan klien.
-          </p>
-        </div>
-        <SectionLabel>Bidang Layanan</SectionLabel>
-        <br className="mb-6" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
-        {SITE.services.map((svc, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            className={`relative p-8 border cursor-pointer transition-all duration-300 group
-              lg:col-span-2
-              ${i === 3 ? "lg:col-start-2" : ""}
-              ${i === 4 ? "lg:col-start-4" : ""}
-              ${
-                hovered === i
-                  ? "border-[#c9a227] bg-[#0c1630]"
-                  : "border-[#c9a227]/15 bg-[#0c1630]/50 hover:border-[#c9a227]/50"
-              }`}
-          >
-            {/* Corner ornament */}
-            <div
-              className={`absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 transition-colors duration-300 ${
-                hovered === i
-                  ? "border-[#c9a227]"
-                  : "border-[#c9a227]/30"
-              }`}
-            />
-
-            <div
-              className={`absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 transition-colors duration-300 ${
-                hovered === i
-                  ? "border-[#c9a227]"
-                  : "border-[#c9a227]/30"
-              }`}
-            />
-
-            <div
-              className={`mb-5 text-[#c9a227] transition-transform duration-300 ${
-                hovered === i ? "scale-110" : ""
-              }`}
-            >
-              <ServiceIcon name={svc.icon} className="w-9 h-9" />
-            </div>
-
-            <h3
-              className="text-lg font-bold text-[#dce6f5] mb-3"
-              style={{ fontFamily: "Playfair Display, serif" }}
-            >
-              {svc.title}
-            </h3>
-
-            <p
-              className="text-[#dce6f5]/55 text-sm leading-relaxed"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              {svc.desc}
+        
+        {/* Header Section */}
+        <Reveal delay={0.2}>
+          <div className="text-center mb-14">
+            <SectionLabel>Layanan Kami</SectionLabel>
+            <SectionHeading>Layanan Hukum Terspesialisasi</SectionHeading>
+            <GoldDivider />
+            <p className="text-[#dce6f5]/60 max-w-7xl mx-auto text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+              Jalasena Bhiksa memberikan layanan hukum melalui pendekatan litigasi dan non-litigasi, dengan strategi yang disesuaikan dengan karakteristik dan kepentingan setiap klien. Kami berkomitmen menghadirkan solusi hukum yang tepat, profesional, dan berorientasi pada kepentingan klien.
             </p>
-
-            <div
-              className={`mt-5 flex items-center gap-2 text-[#c9a227] text-xs font-semibold tracking-wider uppercase transition-opacity duration-300 ${
-                hovered === i ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              Selengkapnya
-              <ChevronRight className="w-3.5 h-3.5" />
-            </div>
           </div>
-        ))}
-      </div>
+        </Reveal>
+
+        <Reveal delay={0.3}>
+          <SectionLabel>Bidang Layanan</SectionLabel>
+          <br className="mb-6" />
+        </Reveal>
+
+        {/* Grid Bidang Layanan (3 Kolom di Baris 1, 2 Kolom di Baris 2) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+          {SITE.services.map((svc, i) => (
+            <Reveal
+              key={i}
+              delay={0.1 * i}
+              className={`lg:col-span-2 ${i === 3 ? "lg:col-start-2" : ""} ${i === 4 ? "lg:col-start-4" : ""}`}
+            >
+              <div
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                className={`relative p-8 border cursor-pointer transition-all duration-300 group h-full flex flex-col justify-between
+                  ${
+                    hovered === i
+                      ? "border-[#c9a227] bg-[#0c1630]"
+                      : "border-[#c9a227]/15 bg-[#0c1630]/50 hover:border-[#c9a227]/50"
+                  }`}
+              >
+                <div>
+                  {/* Corner ornament */}
+                  <div
+                    className={`absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 transition-colors duration-300 ${
+                      hovered === i ? "border-[#c9a227]" : "border-[#c9a227]/30"
+                    }`}
+                  />
+
+                  <div
+                    className={`absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 transition-colors duration-300 ${
+                      hovered === i ? "border-[#c9a227]" : "border-[#c9a227]/30"
+                    }`}
+                  />
+
+                  <div
+                    className={`mb-5 text-[#c9a227] transition-transform duration-300 ${
+                      hovered === i ? "scale-110" : ""
+                    }`}
+                  >
+                    <ServiceIcon name={svc.icon} className="w-9 h-9" />
+                  </div>
+
+                  <h3
+                    className="text-lg font-bold text-[#dce6f5] mb-3"
+                    style={{ fontFamily: "Playfair Display, serif" }}
+                  >
+                    {svc.title}
+                  </h3>
+
+                  <p
+                    className="text-[#dce6f5]/55 text-sm leading-relaxed"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    {svc.desc}
+                  </p>
+                </div>
+
+                <div
+                  className={`mt-5 flex items-center gap-2 text-[#c9a227] text-xs font-semibold tracking-wider uppercase transition-opacity duration-300 ${
+                    hovered === i ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  Selengkapnya
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
       </div>
     </section>
-    </Reveal>
   );
 }
 
