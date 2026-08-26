@@ -7,7 +7,7 @@ interface WhatsAppButtonProps {
 }
 
 export default function WhatsAppButton({
-  phoneNumber = "6281234567890",
+  phoneNumber = "6281289999553",
   message = "Halo, saya ingin berkonsultasi mengenai layanan hukum di Jalasena Bhiksa.",
 }: WhatsAppButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
