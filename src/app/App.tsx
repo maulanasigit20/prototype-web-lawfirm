@@ -1586,7 +1586,7 @@ export default function App() {
       <Footer />
       {/* Floating WhatsApp Button */}
       <WhatsAppButton 
-        phoneNumber="6281234567890" 
+        phoneNumber="6281342267377" 
         message="Halo Kantor Hukum Jalasena Bhiksa, saya ingin mendiskusikan penanganan perkara." 
       />
     </div>
